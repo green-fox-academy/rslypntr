@@ -1,1 +1,2 @@
 Contents of file3
+Modified contents.

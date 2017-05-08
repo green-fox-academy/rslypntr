@@ -1,2 +1,3 @@
 Contents of file4
 Content added.
+Modified contents.
