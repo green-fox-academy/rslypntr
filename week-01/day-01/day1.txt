@@ -1,0 +1,195 @@
+// Task 1: Blink an up arrow pattern
+// Task 2: Change the blinking brightness to 123
+
+basic.forever(() => {
+    led.setBrightness(123)
+    basic.showArrow(ArrowNames.North)
+    basic.showArrow(ArrowNames.East)
+    basic.showArrow(ArrowNames.South)
+    basic.showArrow(ArrowNames.West)
+})
+
+// Task 3: At startup show 4,5,6,7 numbers after each other using a variable
+
+
+let x = 0
+x = 4
+basic.showNumber(x)
+x += 1
+basic.showNumber(x)
+x += 1
+basic.showNumber(x)
+x += 1
+basic.showNumber(x)
+x += 1
+
+// Task 4: Do the previous task with a loop
+
+let item = 0
+item = 4
+for (let index = 0; index <= 3; index++) {
+    basic.showNumber(item)
+    item += 1
+}
+
+// Task 5a: Draw an exclamation mark while the board is shaking and button B is pressed
+
+1
+2
+3
+4
+5
+6
+7
+input.onGesture(Gesture.Shake, () => {
+    while (input.buttonIsPressed(Button.B)) {
+        basic.showString("!")
+    }
+    basic.clearScreen()
+})
+ 
+ 
+ // Task 5b: Make a spirit level device
+ 
+ basic.forever(() => {
+    while (input.rotation(Rotation.Pitch) == 0 && input.rotation(Rotation.Roll) == 0) {
+        basic.showLeds(`
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            `)
+    }
+    while (input.rotation(Rotation.Pitch) < 0 && input.rotation(Rotation.Roll) == 0) {
+        basic.showLeds(`
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            . . . . .
+            `)
+    }
+    while (input.rotation(Rotation.Pitch) > 0 && input.rotation(Rotation.Roll) == 0) {
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            `)
+    }
+    while (input.rotation(Rotation.Pitch) == 0 && input.rotation(Rotation.Roll) < 0) {
+        basic.showLeds(`
+            . . . . .
+            # # # . .
+            # # # . .
+            # # # . .
+            . . . . .
+            `)
+    }
+    while (input.rotation(Rotation.Pitch) == 0 && input.rotation(Rotation.Roll) > 0) {
+        basic.showLeds(`
+            . . . . .
+            . . # # #
+            . . # # #
+            . . # # #
+            . . . . .
+            `)
+    }
+    while (input.rotation(Rotation.Pitch) < 0 && input.rotation(Rotation.Roll) < 0) {
+        basic.showLeds(`
+            # # # . .
+            # # # . .
+            # # # . .
+            . . . . .
+            . . . . .
+            `)
+    }
+    while (input.rotation(Rotation.Pitch) < 0 && input.rotation(Rotation.Roll) > 0) {
+        basic.showLeds(`
+            . . # # #
+            . . # # #
+            . . # # #
+            . . . . .
+            . . . . .
+            `)
+    }
+    while (input.rotation(Rotation.Pitch) > 0 && input.rotation(Rotation.Roll) < 0) {
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            # # # . .
+            # # # . .
+            # # # . .
+            `)
+    }
+    while (input.rotation(Rotation.Pitch) > 0 && input.rotation(Rotation.Roll) > 0) {
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . # # #
+            . . # # #
+            . . # # #
+            `)
+    }
+})
+
+// Task 6: Make a freefall detector
+
+let freefall = 0
+basic.forever(() => {
+    while (true) {
+        freefall = Math.abs(input.acceleration(Dimension.Z))
+        if (freefall < 400) {
+            basic.showLeds(`
+                # # # # #
+                # # # # #
+                # # # # #
+                # # # # #
+                # # # # #
+                `)
+            basic.clearScreen()
+        }
+    }
+})
+
+// Task 7a: Join a string and show it on the led screen
+
+let item = ""
+item = " Hello " + "World!"
+basic.showString(item)
+
+// Task 7b: Parse a string which contains a number and show it as a number on the led screen
+
+let item = 0
+item = parseInt("55")
+basic.showNumber(item)
+
+
+// Task 8: Send a message to someone and show it on the led screen of the receiver
+
+input.onButtonPressed(Button.A, () => {
+    radio.sendString("totoro")
+})
+radio.onDataPacketReceived(({receivedString}) => {
+    basic.showString(receivedString)
+})
+radio.setGroup(56)
+
+////
+
+input.onButtonPressed(Button.A, () => {
+    radio.sendString("totoro")
+})
+radio.onDataPacketReceived(({receivedString}) => {
+    basic.showString(receivedString)
+    if (receivedString == "Mukodik?") {
+        radio.sendString("Igen!")
+    }
+})
+radio.setGroup(56)
+
+
+
+
