@@ -1,0 +1,531 @@
+//Exercise 01
+
+#include <stdio.h>
+
+int main() {
+	int a = 3;
+	// make it bigger by 10
+	a +=10;
+	//printf("%d", a);
+	return 0;
+}
+
+
+
+// Exercise 02
+
+#include <stdio.h>
+
+int main() {
+	int b = 100;
+	// make it smaller by 7
+	b-=7;
+	printf("%d", b);
+	return 0;
+}
+
+
+
+// Exercise 03
+
+#include <stdio.h>
+
+int main() {
+	int c = 44;
+	// please double c's value
+	c *=2;
+	//printf("%d", c);
+	return 0;
+}
+
+
+
+// Exercise 04
+
+#include <stdio.h>
+
+int main() {
+	int d = 125;
+	// please divide by 5 d's value
+	d /=5;
+	printf("%d", d);
+	return 0;
+}
+
+
+
+// Exercise 05
+
+#include <stdio.h>
+
+int main() {
+	int e = 8;
+	// please cube of e's value
+	e=e*e*e;
+	printf("%d", e);
+	return 0;
+}
+
+
+
+//Exercise 06
+
+#include <stdio.h>
+
+int main() {
+	int f = 16;
+	// please square root f's value
+	f = sqrt(f);
+	//printf("%d", f);
+	return 0;
+}
+
+
+
+// Exercise 07
+
+#include <stdio.h>
+
+int main() {
+	int g1 = 123;
+	int g2 = 345;
+	// tell if g1 is bigger than g2
+
+	return g1 > g2; /*returns 0 if false, 1 if true */
+}
+
+
+
+// Exercise 08
+
+#include <stdio.h>
+
+int main() {
+	int h1 = 350;
+	int h2 = 200;
+	// tell if the double of h2 is bigger than h1
+	return h2*2 > h1;  /* returns 0 if false, 1 if true */
+}
+
+
+
+// Exercise 09
+
+#include <stdio.h>
+
+int main() {
+	int i = 53625;
+	// tell if it has 11 as a divisor
+	//printf("%d", i%11);
+	return i%11 ==0; /* returns 0 if false, 1 if true */
+}
+
+
+
+// Exercise 10
+
+#include <stdio.h>
+
+int main() {
+	int j1 = 10;
+	int j2 = 3;
+	// tell if j1 is higher than j2 squared and smaller than j2 cubed
+	return (j1 > j2*j2 && j1 < j2*j2*j2); /* returns 0 if false, 1 if true */
+}
+
+
+
+// Exercise 11
+
+#include <stdio.h>
+
+int main() {
+	int k = 1521;
+	// tell if k is dividable by 3 or 5
+	return k%3 == 0 || k%5 == 0; /* returns 0 if false, 1 if true */
+}
+
+
+
+// Exercise 12
+
+#include <stdio.h>
+#include <stdint.h>
+
+int main() {
+    uint8_t a = 60;
+    uint8_t b = 0b00111100;
+    uint8_t c = 0x3C;
+    uint8_t d = 0x3c;
+
+    printf("------------------\n", d);
+    printf("%d\n", a);
+    printf("%d\n", b);
+    printf("%d\n", c);
+    printf("%d\n", d);
+    printf("------------------\n", d);
+
+    // Try with %x
+    printf("%x\n", a);
+    printf("%x\n", b);
+    printf("%x\n", c);
+    printf("%x\n", d);
+    printf("------------------\n", d);
+
+    // Multiply a by 2
+    a*=2;
+    b<<=1;
+
+
+    // Shift left b by 1
+
+    // Check their values
+    printf("%d\n", a);
+    printf("%d\n", b);
+    printf("------------------\n", d);
+
+    return 0;
+}
+
+
+
+// Exercise 13
+
+#include <stdio.h>
+#include <stdint.h>
+
+int main() {
+    uint8_t x = 0b11001100;
+    uint8_t y = 0b01010101;
+	uint8_t z;
+
+	// Be z equal to the bitwise and of x and y
+	z = x & y;
+
+	// Check the result with printf
+	printf("%d\n", z);
+
+	// Be z equal to the bitwise or of x and y
+	z = x | y;
+
+	// Check the result with printf
+	printf("%d", z);
+    return 0;
+}
+
+
+
+// Exercise 14
+
+#include <stdio.h>
+#include <stdint.h>
+
+int main() {
+    uint8_t number = 130;
+	uint8_t result;
+
+	//result = number + 23;
+	// Check the result with printf
+	//printf("%d", result);
+
+ 	// What happened?! - answer: number 277 cannot be stored on 8 bits
+	// Try again with different datatype
+	uint16_t result_16 = number + 23;
+	// Check the result with printf
+	//printf("%d", result_16);
+
+	// What happened and why? - answer: number 277 can be stored on 16 bits
+
+	//----------------------------------------
+	int8_t number_negative = number;
+	// Check the result with printf
+	printf("%d\n", number_negative);
+	result = number_negative + 23;
+	printf("%d", result);
+
+	// What happened and why? - answer: number 277 is outside range(-128, 127) and therefore cannot be stored as signed int on 8 bits
+    return 0;
+}
+
+
+
+// Exercise 15
+
+#include <stdio.h>
+#include <stdint.h>
+
+int main() {
+	uint8_t u = 123;
+	// print 'Hooray!' if the number is bigger than 100
+	if(u > 100){
+        printf("Hooray!");
+	}
+	return 0;
+}
+
+
+
+// Exercise 16
+
+#include <stdio.h>
+#include <stdint.h>
+
+int main() {
+	uint16_t v = 426;
+	// print 'Yeah!' if dividable by 4 but print 'End of program' after regardless
+	if(v%4 == 0){
+        printf("Yeah!");
+	}
+	else{
+        printf("End of program");
+	}
+	return 0;
+}
+
+
+
+// Exercise 17
+
+#include <stdio.h>
+
+int main() {
+	float w = 24;
+	int out = 0;
+	// if w is even increment out by one
+	if((int)w%2==0){
+        out++;
+	}
+	//printf("%d", out);
+	return 0;
+}
+
+
+
+// Exercise 18
+
+#include <stdint.h>
+
+int main() {
+	uint16_t number = 254;
+	// if number can't be represented with 8bits
+	// print 'longer than 8bits' otherwise print 'ok'
+
+	//printf("size of 8bit int is: %d\n", sizeof(uint8_t));
+	//printf("size of 16bit int is: %d\n", sizeof(uint16_t));
+	//printf("size of number is: %d\n", sizeof(number));
+	//uint8_t number = 254;
+	if(sizeof(number) > sizeof(uint8_t)){
+        printf("%d longer than 8 bits", number);
+
+	}
+	else{
+        printf("OK");
+	}
+	return 0;
+}
+
+
+
+// Exercise 19
+
+#include <stdio.h>
+#include <stdint.h>
+
+int main() {
+	int a = 654;
+	//int a = 654987309;
+	uint64_t b = 654987312;
+	// Tell if the reminder of b devided by a is 3
+	if(b%a ==3){
+        printf("b = x*a + 3");
+	}
+	else{
+        printf("b != x*a + 3");
+	}
+
+	return 0;
+}
+
+
+
+// Exercise 20
+
+#include <stdio.h>
+#include <stdint.h>
+
+int main() {
+	uint8_t z = 13;
+	// if z is between 10 and 20 print 'Sweet!'
+	// if less than 10 print 'More!',
+	// if more than 20 print 'Less!'
+	if(z < 10){
+        printf("More!");
+	}
+	else if(z > 20){
+        printf("Less!");
+	}
+	else{
+        printf("Sweet!");
+	}
+	return 0;
+}
+
+
+
+// Exercise 21
+
+#include <stdio.h>
+#include <stdint.h>
+
+int main() {
+	uint8_t ab = 123;
+	uint8_t credits = 100;
+	uint8_t is_bonus = 0;	// This means "false"
+	// if credits are at least 50,
+	// and is_bonus is false decrement ab by 2
+	// if credits are smaller than 50,
+	// and is_bonus is false decrement ab by 1
+	// if is_bonus is true ab should remain the same
+
+	if(credits >= 50 && is_bonus == 0){
+        ab-=2;
+
+	}
+	else if(credits < 50 && is_bonus == 0){
+       ab-=1;
+	}
+	//printf("%d", ab);
+
+
+	return 0;
+}
+
+
+
+// Exercise 22
+
+#include <stdio.h>
+#include <stdint.h>
+
+int main() {
+
+	uint8_t ac = 8;
+	uint8_t time = 120;
+	uint8_t out;
+	// if ac is dividable by 4
+	// and time is not more than 200
+	// set out to 0b100
+	// if time is more than 200
+	// set out to 0b010
+	// otherwise set out to 0b001
+
+	if(ac%4 == 0 && time <= 200){
+        out = 0b100;
+	}
+	else if(time > 200){
+        out = 0b010;
+	}
+	else{
+        out = 0b001;
+	}
+	//printf("%d", out);
+
+	return 0;
+}
+
+
+
+// Exercise 23
+
+#include <stdio.h>
+#include <stdint.h>
+
+int main() {
+	uint8_t ad = 6;
+	// print the numbers till ad from 0
+	int b = 0;
+	while(b <= ad){
+        printf("%d\n", b);
+        b++;
+	}
+	return 0;
+}
+
+
+
+// Exercise 24
+
+#include <stdio.h>
+#include <stdint.h>
+
+int main() {
+	uint8_t ae = 4;
+	// print "yeeeeeeeey" ae times
+	int i;
+	for(i = 0; i< ae; i++){
+        printf("yeeeeeeeey\n");
+	}
+	return 0;
+}
+
+
+
+// Exercise 25
+
+#include <stdio.h>
+
+int main() {
+	// print the even numbers till 20
+	int i;
+	for(i = 0; i <=20; i++){
+        if(i%2 == 0){
+            printf("%d\n", i);
+        }
+	}
+	// Alternative solution using only a while loop
+	/*i=0;
+	while(i <= 20){
+        printf("%d\n", i);
+        i +=2;
+	}
+	*/
+
+	return 0;
+}
+
+
+
+// Exercise 26
+
+#include <stdio.h>
+
+int main() {
+	// Write a program that prints the numbers from 1 to 100.
+	// But for multiples of three print "Fizz" instead of the number
+	// and for the multiples of five print "Buzz".
+	// For numbers which are multiples of both three and five print "FizzBuzz".
+
+	int i;
+	for(i =1; i <=100; i++){
+        if(i%3 == 0){
+            if(i%5 == 0){
+                printf("FizzBuzz\n");
+            }
+            else{
+                printf("Fizz\n");
+            }
+        }
+        else if(i%5 == 0){
+            printf("Buzz\n");
+        }
+        else{
+            printf("%d\n", i);
+        }
+	}
+
+
+	return 0;
+}
+
+
+
