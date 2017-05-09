@@ -1,0 +1,42 @@
+// Task1: Serial port loopback
+
+
+let item = ""
+serial.onDataReceived(serial.delimiters(Delimiters.Fullstop), () => {
+    item = serial.readUntil(serial.delimiters(Delimiters.Fullstop))
+    serial.writeLine(item)
+})
+
+
+// Task2: Wireless chat program
+
+let item = ""
+serial.onDataReceived(serial.delimiters(Delimiters.Fullstop), () => {
+    item = serial.readUntil(serial.delimiters(Delimiters.Fullstop))
+    radio.sendString(item)
+})
+radio.onDataPacketReceived(({receivedString}) => {
+    item = receivedString
+    serial.writeString(item)
+})
+radio.setGroup(57)
+
+// Task3: Binary to decimal converter
+
+let result = 0
+let x = 0
+let final = 0
+let power = 0
+let item = ""
+basic.forever(() => {
+    item = serial.readUntil(serial.delimiters(Delimiters.Fullstop))
+    power = item.length - 1
+    final = 0
+    for (let index = 0; index <= item.length - 1; index++) {
+        x = parseInt(item.charAt(index))
+        result = x * Math.pow(2, power)
+        final = final + result
+        power += -1
+    }
+    serial.writeNumber(final)
+})
