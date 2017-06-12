@@ -34,7 +34,7 @@ int main(void)
 		
 		for(duty = 0; duty < 255; duty++) {
 			OCR0A = duty;
-			_delay_ms(1);
+			_delay_ms(5);
 		}
 		for(duty = 255; duty > 0; duty--) {
 			OCR0A = duty;
