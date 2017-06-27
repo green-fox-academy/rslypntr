@@ -15,7 +15,7 @@ CLIENT
 
 // Create Server and Client Applications that send and receive messages.
 
-int WSAAPI getnameinfo(const struct sockaddr*,socklen_t,char*,DWORD, //check if needed here
+int WSAAPI getnameinfo(const struct sockaddr*,socklen_t,char*,DWORD,
 		       char*,DWORD,int);
 
 
@@ -46,7 +46,6 @@ int main()
     struct sockaddr_in hint;
     hint.sin_family = AF_INET;
     hint.sin_port = htons(port);
-    //InetPton(AF_INET, ip_address, &hint.sin_addr);  //add the address - how can this be done on Windows??
     hint.sin_addr.s_addr = inet_addr(ip_address);
 
 
@@ -80,7 +79,7 @@ int main()
                     buffer[bytes_received] = 0;
                     if (bytes_received > 0) {
             //Echo response to console
-                        puts(buffer);     //check
+                        puts(buffer);
                     }
                 }
             }

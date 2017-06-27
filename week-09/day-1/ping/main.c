@@ -33,20 +33,6 @@ int main(int argc , char *argv[])
 
     printf("Socket created.\n");
 
-     /*
-    server.sin_addr.s_addr = inet_addr("172.217.18.67");
-    server.sin_family = AF_INET;
-    server.sin_port = htons( 443 );
-
-    //Connect to remote server
-    /*if (connect(s , (struct sockaddr *)&server , sizeof(server)) < 0)
-    {
-        puts("connect error");
-        return 1;
-    }
-
-    puts("Connected");
-    */
 
     int x = system("ping -n 1 216.58.214.227");  //???
 
@@ -55,9 +41,6 @@ int main(int argc , char *argv[])
         printf("Success\n");
     else
         printf("Server could not be reached\n");
-
-    //closesocket(s);
-    //WSACleanup();
 
 
     return 0;

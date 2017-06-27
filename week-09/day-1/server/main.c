@@ -21,7 +21,7 @@ int main()
     //Initialize Winsock
     WSADATA wsData;
     WORD ver = MAKEWORD(2, 2);  //I want version 2 of Winsock
-    //int wsOK = WSAStartup(ver, &wsData);
+
 
     if (WSAStartup(ver, &wsData) != 0)
     {
@@ -41,9 +41,9 @@ int main()
     struct sockaddr_in hint;
     hint.sin_family = AF_INET;
     hint.sin_port = htons(54000); // specify port
-    hint.sin_addr.s_addr = inet_addr("127.0.0.1");//INADDR_ANY; //on any address
+    hint.sin_addr.s_addr = inet_addr("127.0.0.1");
     bind(listening, (struct sockaddr *)&hint, sizeof(hint)); // bind the above specified port
-                                            //on any address to the previously defined socket
+                                                            //on any address to the previously defined socket
 
     //Tell Winsock the socket is for listening
     listen(listening, SOMAXCONN);
@@ -56,14 +56,13 @@ int main()
         printf("\nInvalid socket. Error Code : %d",WSAGetLastError());
         return 1;
     }
-    char host[NI_MAXHOST];      //client's remote name - if applicable...
+    char host[NI_MAXHOST];      //client's remote name - if applicable
     char service[NI_MAXHOST];   //port the client is connected on
     ZeroMemory(host, NI_MAXHOST);   //same as memset()
     ZeroMemory(service, NI_MAXHOST);    //same as memset()
     if (getnameinfo((struct sockaddr *)&client, sizeof(client), host, NI_MAXHOST, service, NI_MAXSERV, 0) == 0) {
         printf("\nHost %s connected on port %s", host, service);
     } else {
-        //inet_ntop(AF_INET, &client.sin_addr, host, NI_MAXHOST);
         printf("\nOmitted print\n");
         printf("\nHost %s connected on port %d", host, ntohs(client.sin_port));
     }
@@ -90,10 +89,6 @@ int main()
 
         //Echo message back to client
        send(client_socket, buff, bytes_received + 1, 0);
-       //printf("%s\n", buff);
-
-
-
     }
 
     //Close the socket
@@ -101,5 +96,4 @@ int main()
 
     //Clean up Winsock
     WSACleanup();
-
 }
