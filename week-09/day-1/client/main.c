@@ -7,9 +7,7 @@ CLIENT
 #include <stdlib.h>
 #include <winsock2.h>
 #include <stdio.h>
-#include <ws2tcpip.h> //necessary?
-
-
+#include <ws2tcpip.h>
 
 #pragma comment(lib,"ws2_32.lib") //Winsock Library
 
@@ -48,9 +46,6 @@ int main()
     hint.sin_port = htons(port);
     hint.sin_addr.s_addr = inet_addr(ip_address);
 
-
-
-
     //Connect to server  - little similar to binding on server side
     int conn_result = connect(s, (struct sockaddr *)&hint, sizeof(hint));
     if (conn_result == SOCKET_ERROR) {
@@ -60,7 +55,6 @@ int main()
         return 1;
     }
 
-
     //Do-while loop to send and receive data
     char buffer[4096];
     char user_input[4096];
@@ -69,14 +63,13 @@ int main()
             printf("Please enter text to send:\n");
             gets(user_input);
             if (sizeof(user_input) > 0) {
-
             //Send the text
-                int send_result = send(s, user_input, sizeof(user_input) + 1, 0);
+                int send_result = send(s, user_input, sizeof(user_input), 0);
                 if (send_result != SOCKET_ERROR) {
             //Wait for response
                     ZeroMemory(buffer, 4096);
                     int bytes_received = recv(s, buffer, 4096, 0);
-                    buffer[bytes_received] = 0;
+                    //buffer[bytes_received] = 0;
                     if (bytes_received > 0) {
             //Echo response to console
                         puts(buffer);

@@ -7,7 +7,7 @@ SERVER
 #include <stdlib.h>
 #include <winsock2.h>
 #include <stdio.h>
-#include <ws2tcpip.h> //necessary?
+#include <ws2tcpip.h>
 
 #pragma comment(lib,"ws2_32.lib") //Winsock Library
 
@@ -21,7 +21,6 @@ int main()
     //Initialize Winsock
     WSADATA wsData;
     WORD ver = MAKEWORD(2, 2);  //I want version 2 of Winsock
-
 
     if (WSAStartup(ver, &wsData) != 0)
     {
@@ -37,7 +36,6 @@ int main()
     }
 
     //Bind the socket to an IP address and port
-
     struct sockaddr_in hint;
     hint.sin_family = AF_INET;
     hint.sin_port = htons(54000); // specify port
@@ -75,7 +73,6 @@ int main()
     while(1) {
         ZeroMemory(buff, 4096); //same as memset()
 
-
         //Wait for client to send data
         int bytes_received = recv(client_socket, buff, 4096, 0);
         if (bytes_received == SOCKET_ERROR) {
@@ -88,7 +85,8 @@ int main()
         }
 
         //Echo message back to client
-       send(client_socket, buff, bytes_received + 1, 0);
+       send(client_socket, buff, bytes_received, 0);
+       ZeroMemory(buff, 4096);
     }
 
     //Close the socket
