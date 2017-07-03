@@ -1,0 +1,9 @@
+TOTORO CHAT
+====================
+Commands:
+ h   Display this help info
+ e   Exit
+ n   Set user name
+ l   List known users
+ d   Send discovery request
+ m   Send message

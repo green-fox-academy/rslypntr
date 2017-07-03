@@ -20,6 +20,7 @@ int WSAAPI getnameinfo(const struct sockaddr*,socklen_t,char*,DWORD,
 
 int main()
 {
+    printf("*****Client startup*****\n");
     char ip_address[] = "127.0.0.1";  //localhost - IP address of the server
     int port = 54000;               //listening port on the server
 
@@ -58,25 +59,29 @@ int main()
     //Do-while loop to send and receive data
     char buffer[4096];
     char user_input[4096];
+
     do {
             //Prompt the user for some text
-            printf("Please enter text to send:\n");
+            printf("\nEnter message:\n");
             gets(user_input);
             if (sizeof(user_input) > 0) {
             //Send the text
                 int send_result = send(s, user_input, sizeof(user_input), 0);
                 if (send_result != SOCKET_ERROR) {
+                //printf("\nMessage sent. Waiting for response...\n");
             //Wait for response
                     ZeroMemory(buffer, 4096);
                     int bytes_received = recv(s, buffer, 4096, 0);
                     //buffer[bytes_received] = 0;
                     if (bytes_received > 0) {
+                        printf("\nMessage from server:\n");
             //Echo response to console
                         puts(buffer);
                     }
                 }
             }
     } while(sizeof(user_input) > 0);
+
 
     //Close down everything
     closesocket(s);
