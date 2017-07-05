@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef enum {MATH, HISTORY, ENGLISH, SCIENCE} subject_t;
 

@@ -18,26 +18,24 @@ MAIN
 
 int main()
 {
-    num_clients = 0;
-    strcpy(myname, "Orsi");
-
     WSADATA wsData;
-    WORD ver = MAKEWORD(2, 2);
-
+    int ver = WSAStartup(MAKEWORD(2, 2), &wsData);
     if (WSAStartup(ver, &wsData) != 0)
     {
         printf("\nCannot initialize Winsock. Error Code : %d",WSAGetLastError());
         return 1;
     }
-    _beginthread(broadcast_listener_thread, 0, NULL);
-    _beginthread(discovery_listener_thread, 0, NULL);
-    _beginthread(msg_listener_thread, 0, NULL);
+
 
 
     while (1) {
             if (kbhit()) {
                 char command = getch();
-                command_interpreter(command);
+                if (command == 'b') {
+                    send_discovery_request();
+
+                }
+
             }
     }
 

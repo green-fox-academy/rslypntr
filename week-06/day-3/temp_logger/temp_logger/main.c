@@ -3,6 +3,9 @@
 
 #include <avr/io.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
 #include <avr/interrupt.h>
 
 #ifndef F_CPU
@@ -10,33 +13,32 @@
 #endif
 #include <avr/delay.h>
 
-#define LED_DDR			DDRB
-#define LED_DDR_POS		DDRB5
-#define LED_PIN			PINB
-#define LED_PIN_POS		PINB5
-#define LED_PORT		PORTB
-#define LED_PORT_POS	PORTB5
-
-
 
 void system_init()
 {
-	//TODO
-	// Call the TWI driver init function
 	TWI_init();
-
-	//TODO
-	//Init the uart
 	UART_init();
-	
-	//set LED as output for code test
-	DDRB|= 1 << DDRB5;
+	//set LED a output for code testing
+	DDRB|= 1 << DDRB5;	
+}
+void print_menu()
+{
+	char buffer[255];
+	FILE *fp;
+	PINB |= 1 <<PINB5;
+	_delay_ms(500);
+	PINB |= 1 << PINB5;
+	/*fp = fopen("startup_info.txt", "r");
+	fgets(buffer, 255, fp);
+	while(!feof(fp)) {
+		printf("%s", buffer);
+		fgets(buffer, 255, fp);
+	}
+	fclose(fp);*/
 }
 
 int main(void)
 {
-
-	// Don't forget to call the init function :)
 	system_init();
 
 	// Setting up STDIO input and output buffer
@@ -49,28 +51,16 @@ int main(void)
 	//----- END OF STDIO IO BUFFER SETUP
 
 	// Try printf
-	//printf("Startup...\r\n");
+	printf("Startup...\r\n");
 	
 	sei();
 
-	// Infinite loop
-
-	
-	while (1) {	
-				
-		uint8_t temp = read_temp(TC_ADDRESS);
-		//printf("\naverage of last 16 measured temperatures: %d", avg_temp(TC_ADDRESS));
-		printf("%d\n", temp);
-		
-					
-
-		//TODO
-		//Advanced: Don't use delay, use timer.
-
-		//TODO
-		//Blink the led to make sure the code is running
+	// Infinite loop	
+	while (1) {
 		PINB |= 1 << PINB5;
 		_delay_ms(500);
-			
+		
+		print_menu();
+		
 	}
 }

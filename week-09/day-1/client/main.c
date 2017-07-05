@@ -21,8 +21,11 @@ int WSAAPI getnameinfo(const struct sockaddr*,socklen_t,char*,DWORD,
 int main()
 {
     printf("*****Client startup*****\n");
-    char ip_address[] = "127.0.0.1";  //localhost - IP address of the server
-    int port = 54000;               //listening port on the server
+    //char ip_address[] = "127.0.0.1";  //localhost - IP address of the server
+     char ip_address[] = "10.26.6.29";  //localhost - IP address of the server
+    //int port = 54000;               //listening port on the server
+    int port = 54545;
+
 
     //Initialize Winsock
     WSADATA data;

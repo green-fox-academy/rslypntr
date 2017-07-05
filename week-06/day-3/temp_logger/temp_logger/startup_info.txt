@@ -1,0 +1,10 @@
+Todo application
+====================
+Commands:
+ -a   Add a new task
+ -wr  Write current todos to file
+ -rd  Read todos from a file
+ -l   List all the tasks
+ -e   Empty the list
+ -r   Remove a task
+

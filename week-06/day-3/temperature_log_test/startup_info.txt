@@ -1,0 +1,14 @@
+Temperature logger application
+====================
+Commands:
+ h      Show the command list
+ e      Exit from the program
+ l      List available ports
+ p      Set port name
+ w      Set write filename
+ o      Open port
+ s      Start logging / Stop logging
+ c      Close port
+ r      Set read filename
+ a      Calculate average in given period
+
